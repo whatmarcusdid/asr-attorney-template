@@ -1,0 +1,475 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Nav from '@components/Nav.astro';
+import Footer from '@components/Footer.astro';
+import Section from '@components/Section.astro';
+import Button from '@components/Button.astro';
+import FAQ from '@components/FAQ.astro';
+import Image from '@components/Image.astro';
+import Heading from '@components/Heading.astro';
+import Icon from '@components/Icon.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+
+export async function getStaticPaths() {
+  const practiceAreas = await getCollection('practice-areas');
+  return practiceAreas.map((area) => ({
+    params: { slug: area.data.slug },
+    props: { area },
+  }));
+}
+
+const { area } = Astro.props;
+const content = area.data;
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Practice Areas', href: '/practice-areas' },
+  { label: content.title, href: '' },
+];
+---
+
+<BaseLayout 
+  title={`${content.title} | Estate Planning Services`}
+  description={content.description}
+>
+  <Nav />
+  
+  <main>
+    <!-- Hero Section -->
+    <Section spacing="small">
+      <Breadcrumb items={breadcrumbs} />
+      <div class="hero">
+        <div class="hero__content">
+          <h1 class="hero__heading">
+            {content.hero.heading}<br />
+            <span class="hero__accent">{content.hero.subheading}</span>
+          </h1>
+          <p class="hero__description">{content.description}</p>
+          <Button 
+            href={content.hero.cta.link}
+            variant="filled"
+            theme="on-light"
+          >
+            {content.hero.cta.text}
+          </Button>
+        </div>
+        <div class="hero__image">
+          <Image 
+            src={content.hero.image.src}
+            alt={content.hero.image.alt}
+            width={800}
+            height={600}
+            layered={true}
+          />
+        </div>
+      </div>
+    </Section>
+    
+    <!-- Overview Section -->
+    <Section background="mist" spacing="default">
+      <div class="overview">
+        <Heading level={2} accent={content.overview.headingAccent} class="overview__heading">
+          {content.overview.heading}
+        </Heading>
+        <p class="overview__description">{content.overview.description}</p>
+      </div>
+    </Section>
+    
+    <!-- What We Help With Section -->
+    <Section spacing="large">
+      <div class="help-section">
+        <div class="help-section__header">
+          <Heading level={2} accent={content.whatWeHelpWith.headingAccent}>
+            {content.whatWeHelpWith.heading}
+          </Heading>
+          {content.whatWeHelpWith.description && (
+            <p class="help-section__intro">{content.whatWeHelpWith.description}</p>
+          )}
+        </div>
+        <ul class="help-list">
+          {content.whatWeHelpWith.items.map((item) => (
+            <li class="help-list__item">{item}</li>
+          ))}
+        </ul>
+      </div>
+    </Section>
+    
+    <!-- Key Benefits Section -->
+    <Section background="navy" spacing="large">
+      <div class="benefits">
+        <div class="benefits__header">
+          <Heading level={2} accent={content.keyBenefits.headingAccent} class="benefits__heading">
+            {content.keyBenefits.heading}
+          </Heading>
+          <p class="benefits__description">{content.keyBenefits.description}</p>
+        </div>
+        <div class="benefits-grid">
+          {content.keyBenefits.benefits.map((benefit) => (
+            <div class="benefit-card">
+              <div class="benefit-card__icon">
+                <Icon name={benefit.icon} size={32} color="var(--color-secondary-copper)" />
+              </div>
+              <h3 class="benefit-card__title">{benefit.title}</h3>
+              <p class="benefit-card__description">{benefit.description}</p>
+            </div>
+          ))}
+        </div>
+        <div class="benefits__cta">
+          <Button 
+            href={content.keyBenefits.cta.link}
+            variant="filled"
+            theme="on-navy"
+          >
+            {content.keyBenefits.cta.text}
+          </Button>
+        </div>
+      </div>
+    </Section>
+    
+    <!-- Process Section -->
+    <Section spacing="large">
+      <div class="process">
+        <div class="process__header">
+          <Heading level={2} accent={content.process.headingAccent}>
+            {content.process.heading}
+          </Heading>
+          <p class="process__description">{content.process.description}</p>
+        </div>
+        <div class="process-grid">
+          {content.process.steps.map((step) => (
+            <div class="process-step">
+              <div class="process-step__icon">
+                <Icon name={step.icon} size={32} color="var(--color-secondary-copper)" />
+              </div>
+              <span class="process-step__number">{step.number}</span>
+              <h3 class="process-step__title">{step.title}</h3>
+              <p class="process-step__description">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Section>
+    
+    <!-- FAQ Section -->
+    <Section background="mist" spacing="large">
+      <div class="faq-section">
+        <div class="faq-section__header">
+          <Heading level={2} accent={content.faq.headingAccent}>
+            {content.faq.heading}
+          </Heading>
+          {content.faq.description && (
+            <p class="faq-section__intro">{content.faq.description}</p>
+          )}
+        </div>
+        <div class="faq-container">
+          {content.faq.items.map((item, index) => (
+            <FAQ question={item.question} id={`${area.data.slug}-${index}`}>
+              <p>{item.answer}</p>
+            </FAQ>
+          ))}
+        </div>
+      </div>
+    </Section>
+    
+    <!-- Final CTA Section -->
+    <Section background="navy" spacing="large">
+      <div class="final-cta">
+        <Heading level={2} accent={content.finalCta.headingAccent} class="final-cta__heading">
+          {content.finalCta.heading}
+        </Heading>
+        <p class="final-cta__description">{content.finalCta.description}</p>
+        <Button 
+          href={content.finalCta.cta.link}
+          variant="filled"
+          theme="on-navy"
+        >
+          {content.finalCta.cta.text}
+        </Button>
+      </div>
+    </Section>
+  </main>
+  
+  <Footer 
+    responsibleAttorney="Attorney Name, Esq."
+    firmName="Law Firm Name"
+  />
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-48);
+    align-items: center;
+    margin-top: var(--space-24);
+  }
+  
+  .hero__content {
+    grid-column: span 6;
+  }
+  
+  .hero__image {
+    grid-column: span 6;
+  }
+  
+  .hero__heading {
+    font-size: var(--text-h1);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-tight-2);
+    margin-bottom: var(--space-24);
+  }
+  
+  .hero__accent {
+    color: var(--color-muted);
+  }
+  
+  .hero__description {
+    font-size: var(--text-body);
+    color: var(--color-muted);
+    margin-bottom: var(--space-32);
+    max-width: 540px;
+    line-height: var(--leading-body);
+  }
+  
+  /* Overview Section */
+  .overview {
+    max-width: 900px;
+  }
+  
+  .overview__heading {
+    margin-bottom: var(--space-24);
+  }
+  
+  .overview__description {
+    font-size: var(--text-body);
+    color: var(--color-muted);
+    line-height: var(--leading-body);
+  }
+  
+  /* What We Help With Section */
+  .help-section {
+    max-width: 900px;
+  }
+  
+  .help-section__header {
+    margin-bottom: var(--space-48);
+  }
+  
+  .help-section__intro {
+    font-size: var(--text-body);
+    color: var(--color-muted);
+    margin-top: var(--space-16);
+  }
+  
+  .help-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+  
+  .help-list__item {
+    padding: var(--space-24);
+    background-color: var(--color-mist);
+    border-radius: var(--radius-default);
+    font-size: var(--text-body);
+    color: var(--color-ink);
+    position: relative;
+    padding-left: var(--space-48);
+  }
+  
+  .help-list__item::before {
+    content: '•';
+    position: absolute;
+    left: var(--space-24);
+    color: var(--color-secondary-copper);
+    font-size: var(--text-h4);
+    line-height: 1;
+  }
+  
+  /* Benefits Section */
+  .benefits {
+    text-align: center;
+  }
+  
+  .benefits__header {
+    max-width: 700px;
+    margin: 0 auto var(--space-64);
+  }
+  
+  .benefits__heading {
+    color: var(--color-white);
+    margin-bottom: var(--space-24);
+  }
+  
+  .benefits__description {
+    font-size: var(--text-body);
+    color: var(--color-mist);
+    line-height: var(--leading-body);
+  }
+  
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-24);
+    margin-bottom: var(--space-48);
+  }
+  
+  .benefit-card {
+    background-color: var(--color-white);
+    padding: var(--space-32);
+    border-radius: var(--radius-default);
+    text-align: center;
+  }
+  
+  .benefit-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-24);
+    background-color: var(--color-mist);
+    border-radius: var(--radius-default);
+  }
+  
+  .benefit-card__title {
+    font-size: var(--text-h5);
+    color: var(--color-ink);
+    margin-bottom: var(--space-12);
+  }
+  
+  .benefit-card__description {
+    font-size: var(--text-body-sm);
+    color: var(--color-muted);
+    line-height: var(--leading-body);
+  }
+  
+  /* Process Section */
+  .process__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-64);
+  }
+  
+  .process__description {
+    font-size: var(--text-body);
+    color: var(--color-muted);
+    margin-top: var(--space-16);
+    line-height: var(--leading-body);
+  }
+  
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-32);
+  }
+  
+  .process-step {
+    background-color: var(--color-mist);
+    padding: var(--space-32);
+    border-radius: var(--radius-default);
+    text-align: center;
+  }
+  
+  .process-step__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-16);
+    background-color: var(--color-white);
+    border-radius: var(--radius-default);
+  }
+  
+  .process-step__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    color: var(--color-secondary-copper);
+    font-weight: 400;
+    margin-bottom: var(--space-12);
+  }
+  
+  .process-step__title {
+    font-size: var(--text-h5);
+    margin-bottom: var(--space-12);
+  }
+  
+  .process-step__description {
+    font-size: var(--text-body-sm);
+    color: var(--color-muted);
+    line-height: var(--leading-body);
+  }
+  
+  /* FAQ Section */
+  .faq-section__header {
+    max-width: 800px;
+    margin-bottom: var(--space-48);
+  }
+  
+  .faq-section__intro {
+    font-size: var(--text-body);
+    color: var(--color-muted);
+    margin-top: var(--space-16);
+  }
+  
+  .faq-container {
+    max-width: 800px;
+  }
+  
+  /* Final CTA */
+  .final-cta {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .final-cta__heading {
+    color: var(--color-white);
+    margin-bottom: var(--space-24);
+  }
+  
+  .final-cta__description {
+    font-size: var(--text-body);
+    color: var(--color-mist);
+    margin-bottom: var(--space-32);
+    line-height: var(--leading-body);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    
+    .hero__content,
+    .hero__image {
+      grid-column: span 1;
+    }
+    
+    .hero__image {
+      order: -1;
+    }
+    
+    .process-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .hero {
+      gap: var(--space-32);
+    }
+    
+    .benefits-grid,
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
