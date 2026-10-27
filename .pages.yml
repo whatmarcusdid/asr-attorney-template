@@ -1,49 +1,633 @@
 # Pages CMS Configuration
 # https://pagescms.org
+#
+# This configuration maps editable content for the ASR Attorney Template.
+# Editors work on the cms-edits branch, which is reviewed via deploy preview
+# before merging to main.
 
-# This is a stub configuration. Update with client-specific collections and fields.
+# Media storage configuration
+media:
+  folder: public/uploads
+  path: /uploads
 
+# Commit identity - records the editing user's name/email
+commit:
+  identity: user
+
+# Content collections and files
 collections:
-  - name: pages
-    label: Pages
-    path: src/pages
+  # Home Page Content
+  - name: home
+    label: Home Page
+    file: src/content/home.json
+    merge: true  # Preserves unlisted keys (structure, layout, icons)
     fields:
-      - name: title
-        label: Page Title
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: subheading
+            label: Sub-heading
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+            required: true
+          - name: cta
+            label: Primary Call to Action
+            type: object
+            fields:
+              - name: text
+                label: Button Text
+                type: string
+                required: true
+              - name: link
+                label: Button Link
+                type: string
+                required: true
+          - name: secondaryCta
+            label: Secondary Call to Action
+            type: object
+            fields:
+              - name: text
+                label: Button Text
+                type: string
+                required: true
+              - name: link
+                label: Button Link
+                type: string
+                required: true
+      
+      - name: practiceAreas
+        label: Practice Areas Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: items
+            label: Practice Area Items
+            type: list
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: description
+                label: Description
+                type: text
+                required: true
+      
+      - name: about
+        label: About Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+            required: true
+          - name: cta
+            label: Call to Action
+            type: object
+            fields:
+              - name: text
+                label: Button Text
+                type: string
+                required: true
+              - name: link
+                label: Button Link
+                type: string
+                required: true
+          - name: image
+            label: Image
+            type: object
+            fields:
+              - name: src
+                label: Image URL
+                type: image
+                required: true
+              - name: alt
+                label: Image Alt Text
+                type: string
+                required: true
+      
+      - name: process
+        label: Planning Process Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: steps
+            label: Process Steps
+            type: list
+            fields:
+              - name: number
+                label: Step Number
+                type: string
+                required: true
+              - name: title
+                label: Step Title
+                type: string
+                required: true
+              - name: description
+                label: Step Description
+                type: text
+                required: true
+      
+      - name: whyChooseUs
+        label: Why Choose Us Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: reasons
+            label: Reasons
+            type: list
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: description
+                label: Description
+                type: text
+                required: true
+      
+      - name: resources
+        label: Resources Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: items
+            label: Resource Items
+            type: list
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: description
+                label: Description
+                type: text
+                required: true
+      
+      - name: faq
+        label: FAQ Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: items
+            label: FAQ Items
+            type: list
+            fields:
+              - name: question
+                label: Question
+                type: string
+                required: true
+              - name: answer
+                label: Answer
+                type: text
+                required: true
+      
+      - name: finalCta
+        label: Final CTA Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+            required: true
+          - name: cta
+            label: Call to Action
+            type: object
+            fields:
+              - name: text
+                label: Button Text
+                type: string
+                required: true
+              - name: link
+                label: Button Link
+                type: string
+                required: true
+  
+  # Contact Page Content
+  - name: contact
+    label: Contact Page
+    file: src/content/contact.json
+    merge: true  # Preserves unlisted keys
+    fields:
+      - name: heading
+        label: Heading
         type: string
         required: true
-      
+      - name: headingAccent
+        label: Heading Accent (second part)
+        type: string
+        required: true
       - name: description
-        label: Meta Description
+        label: Description
         type: text
-        maxlength: 160
-        
-      - name: heading
-        label: Main Heading
+        required: true
+      - name: ctaPrimary
+        label: Primary Call to Action
+        type: object
+        fields:
+          - name: text
+            label: Button Text
+            type: string
+            required: true
+          - name: link
+            label: Button Link
+            type: string
+            required: true
+      - name: ctaSecondary
+        label: Secondary Call to Action
+        type: object
+        fields:
+          - name: text
+            label: Button Text
+            type: string
+            required: true
+          - name: phone
+            label: Phone Number
+            type: string
+            required: true
+      - name: offices
+        label: Office Locations
+        type: list
+        fields:
+          - name: name
+            label: Office Name
+            type: string
+            required: true
+          - name: address
+            label: Address
+            type: text
+            required: true
+      - name: phone
+        label: Phone Number
         type: string
-        
-      - name: subheading
-        label: Sub-heading
+        required: true
+      - name: email
+        label: Email Address
+        type: string
+        required: true
+      - name: hours
+        label: Office Hours
+        type: string
+        required: true
+      - name: mapImage
+        label: Map Image
+        type: object
+        fields:
+          - name: src
+            label: Image URL
+            type: image
+            required: true
+          - name: alt
+            label: Image Alt Text
+            type: string
+            required: true
+  
+  # Practice Areas Collection
+  - name: practice-areas
+    label: Practice Areas
+    path: src/content/practice-areas
+    extension: json
+    create: true   # Editors can create new practice areas
+    delete: false  # Prevents accidental deletion; requires developer
+    merge: true    # Preserves unlisted keys (structure, icons, layout)
+    fields:
+      - name: draft
+        label: Draft (hidden on live site)
+        type: boolean
+        default: false
+        help: Draft practice areas are hidden in production but visible in deploy previews
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: slug
+        label: URL Slug
+        type: string
+        required: true
+        help: Use lowercase with hyphens (e.g. wills-and-trusts)
+      - name: description
+        label: Description
         type: text
-        
-      - name: body
-        label: Body Content
-        type: markdown
-        
-      - name: cta_text
-        label: Call to Action Text
+        required: true
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: subheading
+            label: Sub-heading
+            type: string
+            required: true
+          - name: cta
+            label: Call to Action
+            type: object
+            fields:
+              - name: text
+                label: Button Text
+                type: string
+                required: true
+              - name: link
+                label: Button Link
+                type: string
+                required: true
+          - name: image
+            label: Image
+            type: object
+            fields:
+              - name: src
+                label: Image URL
+                type: image
+                required: true
+              - name: alt
+                label: Image Alt Text
+                type: string
+                required: true
+      - name: overview
+        label: Overview Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+            required: true
+      - name: whatWeHelpWith
+        label: What We Help With Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+          - name: items
+            label: Service Items
+            type: list
+            item: string
+      - name: keyBenefits
+        label: Key Benefits Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+            required: true
+          - name: benefits
+            label: Benefits
+            type: list
+            fields:
+              - name: title
+                label: Title
+                type: string
+                required: true
+              - name: description
+                label: Description
+                type: text
+                required: true
+          - name: cta
+            label: Call to Action
+            type: object
+            fields:
+              - name: text
+                label: Button Text
+                type: string
+                required: true
+              - name: link
+                label: Button Link
+                type: string
+                required: true
+      - name: process
+        label: Process Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+            required: true
+          - name: steps
+            label: Steps
+            type: list
+            fields:
+              - name: number
+                label: Step Number
+                type: string
+                required: true
+              - name: title
+                label: Step Title
+                type: string
+                required: true
+              - name: description
+                label: Step Description
+                type: text
+                required: true
+      - name: faq
+        label: FAQ Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+          - name: items
+            label: FAQ Items
+            type: list
+            fields:
+              - name: question
+                label: Question
+                type: string
+                required: true
+              - name: answer
+                label: Answer
+                type: text
+                required: true
+      - name: finalCta
+        label: Final CTA Section
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: headingAccent
+            label: Heading Accent (second part)
+            type: string
+            required: true
+          - name: description
+            label: Description
+            type: text
+            required: true
+          - name: cta
+            label: Call to Action
+            type: object
+            fields:
+              - name: text
+                label: Button Text
+                type: string
+                required: true
+              - name: link
+                label: Button Link
+                type: string
+                required: true
+  
+  # Resources Collection
+  - name: resources
+    label: Resources
+    path: src/content/resources
+    extension: json
+    create: true   # Editors can create new resources
+    delete: false  # Prevents accidental deletion; requires developer
+    merge: true    # Preserves unlisted keys (order)
+    fields:
+      - name: draft
+        label: Draft (hidden on live site)
+        type: boolean
+        default: false
+        help: Draft resources are hidden in production but visible in deploy previews
+      - name: title
+        label: Title
         type: string
-        
-      - name: cta_link
-        label: Call to Action Link
+        required: true
+      - name: category
+        label: Category
+        type: select
+        required: true
+        options:
+          - Wills
+          - Trusts
+          - Probate
+          - Powers of Attorney
+          - Guardianship
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+      - name: image
+        label: Image
+        type: object
+        fields:
+          - name: src
+            label: Image URL
+            type: image
+            required: true
+          - name: alt
+            label: Image Alt Text
+            type: string
+            required: true
+      - name: date
+        label: Publication Date
         type: string
+        required: true
+        help: Format as "Month YYYY" (e.g. "October 2026")
+      - name: link
+        label: Link
+        type: string
+        required: true
+        help: URL path to the full resource (e.g. /resources/article-slug)
 
-# Note: Editable fields are LIMITED to:
-# - Images
-# - Headings
-# - Sub-headlines  
-# - Paragraphs
-# - CTA text and links
-#
-# Anything beyond this scope (layouts, components, structure) 
-# requires repository changes by developers.
+# NOT exposed to editors (safe defaults in code):
+# - Section order and layout
+# - Icon names and colors
+# - Design tokens (colors, spacing, fonts)
+# - Component structure
+# - Rating badge toggle (off by default)
+# - Navigation menu items
+# - Footer structure
+# - Form fields

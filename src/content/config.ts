@@ -3,6 +3,7 @@ import { defineCollection, z } from 'astro:content';
 const practiceAreasCollection = defineCollection({
   type: 'data',
   schema: z.object({
+    draft: z.boolean().optional().default(false),
     title: z.string(),
     slug: z.string(),
     description: z.string(),
@@ -78,6 +79,7 @@ const practiceAreasCollection = defineCollection({
 const resourcesCollection = defineCollection({
   type: 'data',
   schema: z.object({
+    draft: z.boolean().optional().default(false),
     title: z.string(),
     category: z.enum(['Wills', 'Trusts', 'Probate', 'Powers of Attorney', 'Guardianship']),
     summary: z.string(),

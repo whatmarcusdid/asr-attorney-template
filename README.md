@@ -139,6 +139,68 @@ Output in `/dist` directory.
 npm run preview
 ```
 
+## 📝 CMS Editing Workflow
+
+Pages CMS allows content editors to update text, images, and CTAs without touching code. The CMS workflow is designed to maintain compliance with Maryland's advertising archive rules.
+
+### Workflow Overview
+
+1. **CMS Branch**: All CMS edits are committed to a long-lived `cms-edits` branch
+2. **Deploy Preview**: Every commit triggers a Netlify deploy preview for review
+3. **Merge Process**: Owner reviews the preview and merges `cms-edits` → `main` with a normal merge (never squash)
+4. **Fast-forward After Code Changes**: After developer PRs merge to `main`, fast-forward `cms-edits` to `main`
+
+### Key Rules
+
+- **Never force-push** the `cms-edits` branch (preserves commit history for ad archiving)
+- **Never squash merge** CMS commits (Maryland requires individual editor attribution)
+- **Protect main**: All changes to `main` require review via PR or CMS preview
+- **User Identity**: Pages CMS records the editing user's name and email in each commit
+
+### What Editors Can Change
+
+✅ **Editable via CMS**:
+- Images (with alt text)
+- Headings and sub-headlines
+- Paragraphs and descriptions
+- CTA button text and links
+- FAQ items
+- Contact information and office hours
+- Draft status (hide/show in production)
+
+❌ **Locked (requires developer)**:
+- Section order and layout
+- Icon names and colors
+- Design tokens (colors, spacing, fonts)
+- Component structure
+- Navigation menu items
+- Footer structure
+
+### Creating the CMS Branch
+
+When setting up a new client site:
+
+```bash
+git checkout main
+git checkout -b cms-edits
+git push -u origin cms-edits
+```
+
+Then configure Pages CMS to use the `cms-edits` branch for editing.
+
+### After Developer PRs
+
+When developer PRs merge into `main`:
+
+```bash
+git checkout cms-edits
+git fetch origin
+git merge --ff-only origin/main
+git push origin cms-edits
+```
+
+This keeps `cms-edits` current without rewriting CMS commit history.
+
 ## 📋 Bar Advertising Compliance
 
 This template is designed for estate planning firms in **Virginia, Maryland, and Washington, DC**. Maryland rules (most restrictive) are the default.
