@@ -8,7 +8,11 @@ import Button from '@components/Button.astro';
 import Heading from '@components/Heading.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 
-const resources = await getCollection('resources');
+const resources = await getCollection('resources', ({ data }) => {
+  // Show drafts in dev and deploy previews, hide in production
+  const isProduction = import.meta.env.PROD && process.env.CONTEXT === 'production';
+  return isProduction ? !data.draft : true;
+});
 const sortedResources = resources.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
 const categories = ['All', 'Wills', 'Trusts', 'Probate', 'Powers of Attorney', 'Guardianship'];

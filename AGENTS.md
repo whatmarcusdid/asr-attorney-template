@@ -86,7 +86,22 @@ These require additional disclaimers and owner approval before implementation.
 
 - **Main branch** is protected and represents production
 - **Feature branches** for all work (e.g., `feature/home-page`, `fix/nav-mobile`)
+- **CMS edits branch** (`cms-edits`) is long-lived for client content updates
 - **Small, focused PRs** (one feature or fix per PR)
+
+### CMS Editing Workflow
+
+Client content editors work on a dedicated `cms-edits` branch:
+
+1. **CMS commits to `cms-edits`**: Pages CMS records each editor's identity (name + email) in commit metadata
+2. **Netlify preview deploys**: Every `cms-edits` commit triggers a deploy preview
+3. **Owner reviews**: Owner checks the preview for compliance and accuracy
+4. **Normal merge to main**: Owner merges `cms-edits` → `main` with a **normal merge (never squash)**
+5. **Fast-forward after code PRs**: After developer PRs merge to `main`, fast-forward `cms-edits` to sync
+
+### Why No Squashing?
+
+**Maryland's advertising archive rule** requires law firms to maintain records of who created each ad and when. By preserving individual CMS commits with user attribution, the git history becomes the compliance record. Squashing would erase this audit trail.
 
 ### Agent Responsibilities
 
@@ -98,6 +113,18 @@ Agents working on this repository:
 4. **Never merge PRs** — owner reviews and merges
 5. **Never deploy directly** — Netlify auto-deploys from main after merge
 6. **Never force-push** or rewrite history on shared branches
+7. **Never touch `cms-edits`** — it's managed by Pages CMS and the owner
+8. **After your PR merges**: The owner will fast-forward `cms-edits` to include your changes
+
+### Draft Content Handling
+
+Practice areas and resources support an optional `draft` boolean field:
+
+- **Production builds** (`CONTEXT=production`): Drafts are hidden
+- **Deploy previews** (`CONTEXT=deploy-preview`): Drafts are visible
+- **Local dev**: Drafts are visible
+
+This lets editors preview draft content before publishing.
 
 ### Review Process
 

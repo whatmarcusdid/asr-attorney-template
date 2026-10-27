@@ -12,7 +12,11 @@ import Icon from '@components/Icon.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 
 export async function getStaticPaths() {
-  const practiceAreas = await getCollection('practice-areas');
+  const practiceAreas = await getCollection('practice-areas', ({ data }) => {
+    // Show drafts in dev and deploy previews, hide in production
+    const isProduction = import.meta.env.PROD && process.env.CONTEXT === 'production';
+    return isProduction ? !data.draft : true;
+  });
   return practiceAreas.map((area) => ({
     params: { slug: area.data.slug },
     props: { area },
