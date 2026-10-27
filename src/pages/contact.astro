@@ -1,0 +1,481 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Nav from '@components/Nav.astro';
+import Footer from '@components/Footer.astro';
+import Section from '@components/Section.astro';
+import Button from '@components/Button.astro';
+import Heading from '@components/Heading.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import Image from '@components/Image.astro';
+import Icon from '@components/Icon.astro';
+
+import contactContent from '../content/contact.json';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Contact', href: '' },
+];
+---
+
+<BaseLayout 
+  title="Contact Us | Schedule a Consultation"
+  description="Contact our estate planning attorneys to schedule a consultation or ask questions about your planning needs."
+>
+  <Nav />
+  
+  <main>
+    <Section spacing="default">
+      <Breadcrumb items={breadcrumbs} />
+      
+      <div class="contact-hero">
+        <div class="contact-hero__content">
+          <Heading level={1} accent={contactContent.headingAccent}>
+            {contactContent.heading}
+          </Heading>
+          <p class="contact-hero__description">{contactContent.description}</p>
+          <div class="contact-hero__actions">
+            <Button href={contactContent.ctaPrimary.link} variant="filled" theme="on-light">
+              {contactContent.ctaPrimary.text}
+            </Button>
+            <Button href={`tel:${contactContent.ctaSecondary.phone.replace(/\D/g, '')}`} variant="outline" theme="on-light">
+              {contactContent.ctaSecondary.text}
+            </Button>
+          </div>
+          <p class="contact-hero__meta">
+            <a href={`tel:${contactContent.phone.replace(/\D/g, '')}`}>{contactContent.phone}</a> | 
+            <a href={`mailto:${contactContent.email}`}>{contactContent.email}</a>
+          </p>
+        </div>
+      </div>
+      
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h2 class="contact-form__heading">Send a message</h2>
+          
+          <form 
+            name="contact" 
+            method="POST" 
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            action="/contact/success"
+          >
+            <!-- Hidden fields for Netlify -->
+            <input type="hidden" name="form-name" value="contact" />
+            
+            <!-- Honeypot field (hidden from users) -->
+            <p class="hidden">
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" />
+              </label>
+            </p>
+            
+            <div class="form-row">
+              <div class="form-field">
+                <label for="name" class="form-label">Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  class="form-input" 
+                  placeholder="Full name"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              
+              <div class="form-field">
+                <label for="email" class="form-label">Email</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  class="form-input" 
+                  placeholder="you@example.com"
+                  required
+                  aria-required="true"
+                />
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-field">
+                <label for="phone" class="form-label">Phone</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  class="form-input" 
+                  placeholder="(000) 000-0000"
+                />
+              </div>
+              
+              <div class="form-field">
+                <label for="contact-method" class="form-label">Preferred contact method</label>
+                <select 
+                  id="contact-method" 
+                  name="contact-method" 
+                  class="form-select"
+                  required
+                  aria-required="true"
+                >
+                  <option value="">Email or phone</option>
+                  <option value="email">Email</option>
+                  <option value="phone">Phone</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-field">
+              <label for="topic" class="form-label">Topic</label>
+              <select 
+                id="topic" 
+                name="topic" 
+                class="form-select"
+                required
+                aria-required="true"
+              >
+                <option value="">Choose a practice area</option>
+                <option value="wills">Wills</option>
+                <option value="trusts">Trusts</option>
+                <option value="probate">Probate</option>
+                <option value="power-of-attorney">Powers of Attorney</option>
+                <option value="guardianship">Guardianship</option>
+                <option value="general">General Question</option>
+              </select>
+            </div>
+            
+            <div class="form-field">
+              <label for="message" class="form-label">Message</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                class="form-textarea" 
+                rows="6"
+                placeholder="A short note about what you would like to discuss"
+                required
+                aria-required="true"
+              ></textarea>
+            </div>
+            
+            <p class="form-notice">
+              Please do not send confidential information through this form. Submitting it does not create an attorney-client relationship.
+            </p>
+            
+            <Button type="submit" variant="filled" theme="on-light">
+              Submit
+            </Button>
+          </form>
+        </div>
+        
+        <!-- Contact Details -->
+        <div class="contact-details">
+          <h2 class="contact-details__heading">Contact details</h2>
+          
+          <div class="contact-details__offices">
+            {contactContent.offices.map((office) => (
+              <div class="office">
+                <div class="office__icon">
+                  <Icon name="house" size={20} color="var(--color-secondary-copper)" />
+                </div>
+                <div class="office__content">
+                  <h3 class="office__name">{office.name}</h3>
+                  <p class="office__address">{office.address}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div class="contact-details__info">
+            <div class="contact-info">
+              <Icon name="house" size={20} color="var(--color-secondary-copper)" />
+              <a href={`tel:${contactContent.phone.replace(/\D/g, '')}`}>{contactContent.phone}</a>
+            </div>
+            <div class="contact-info">
+              <Icon name="house" size={20} color="var(--color-secondary-copper)" />
+              <a href={`mailto:${contactContent.email}`}>{contactContent.email}</a>
+            </div>
+          </div>
+          
+          <div class="contact-details__hours">
+            <div class="hours">
+              <Icon name="clock" size={20} color="var(--color-secondary-copper)" />
+              <div>
+                <h3 class="hours__title">Office hours</h3>
+                <p class="hours__time">{contactContent.hours}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-details__map">
+            <Image 
+              src={contactContent.mapImage.src}
+              alt={contactContent.mapImage.alt}
+              width={800}
+              height={600}
+              layered={true}
+            />
+          </div>
+        </div>
+      </div>
+    </Section>
+  </main>
+  
+  <Footer 
+    responsibleAttorney="Attorney Name, Esq."
+    firmName="Law Firm Name"
+  />
+</BaseLayout>
+
+<style>
+  /* Hidden honeypot field */
+  .hidden {
+    display: none;
+  }
+  
+  /* Contact Hero */
+  .contact-hero {
+    margin-bottom: var(--space-64);
+  }
+  
+  .contact-hero__description {
+    font-size: var(--text-body);
+    color: var(--color-muted);
+    margin: var(--space-16) 0 var(--space-32);
+    max-width: 600px;
+    line-height: var(--leading-body);
+  }
+  
+  .contact-hero__actions {
+    display: flex;
+    gap: var(--space-16);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-16);
+  }
+  
+  .contact-hero__meta {
+    font-size: var(--text-body-sm);
+    color: var(--color-muted);
+  }
+  
+  .contact-hero__meta a {
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+  
+  .contact-hero__meta a:hover {
+    color: var(--color-button-primary);
+    text-decoration: underline;
+  }
+  
+  /* Contact Grid */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-48);
+  }
+  
+  .contact-form {
+    grid-column: span 6;
+    background-color: var(--color-mist);
+    padding: var(--space-48);
+    border-radius: var(--radius-default);
+  }
+  
+  .contact-form__heading {
+    font-size: var(--text-h3);
+    margin-bottom: var(--space-32);
+  }
+  
+  .contact-details {
+    grid-column: span 6;
+  }
+  
+  .contact-details__heading {
+    font-size: var(--text-h3);
+    margin-bottom: var(--space-32);
+  }
+  
+  /* Form Styles */
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-16);
+  }
+  
+  .form-field {
+    margin-bottom: var(--space-24);
+  }
+  
+  .form-label {
+    display: block;
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: var(--space-8);
+  }
+  
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    min-height: var(--tap-target-min);
+    padding: var(--space-12) var(--space-16);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-ink);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-default);
+    transition: all var(--transition-base);
+  }
+  
+  .form-input:hover,
+  .form-select:hover,
+  .form-textarea:hover {
+    border-color: var(--color-muted);
+  }
+  
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-button-primary);
+    box-shadow: 0 0 0 3px rgba(43, 83, 180, 0.1);
+  }
+  
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--color-muted);
+  }
+  
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B6F76' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-16) center;
+    padding-right: var(--space-48);
+    cursor: pointer;
+  }
+  
+  .form-textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .form-notice {
+    font-size: var(--text-body-sm);
+    color: var(--color-muted);
+    line-height: var(--leading-body);
+    margin-bottom: var(--space-24);
+    padding: var(--space-16);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-default);
+  }
+  
+  /* Contact Details */
+  .contact-details__offices {
+    margin-bottom: var(--space-32);
+  }
+  
+  .office {
+    display: flex;
+    gap: var(--space-12);
+    margin-bottom: var(--space-24);
+  }
+  
+  .office__icon {
+    flex-shrink: 0;
+    padding-top: var(--space-4);
+  }
+  
+  .office__name {
+    font-size: var(--text-body);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: var(--space-4);
+  }
+  
+  .office__address {
+    font-size: var(--text-body-sm);
+    color: var(--color-muted);
+    line-height: var(--leading-body);
+  }
+  
+  .contact-details__info {
+    margin-bottom: var(--space-32);
+  }
+  
+  .contact-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+    margin-bottom: var(--space-12);
+  }
+  
+  .contact-info a {
+    font-size: var(--text-body-sm);
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+  
+  .contact-info a:hover {
+    color: var(--color-button-primary);
+    text-decoration: underline;
+  }
+  
+  .contact-details__hours {
+    margin-bottom: var(--space-32);
+  }
+  
+  .hours {
+    display: flex;
+    gap: var(--space-12);
+  }
+  
+  .hours__title {
+    font-size: var(--text-body);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: var(--space-4);
+  }
+  
+  .hours__time {
+    font-size: var(--text-body-sm);
+    color: var(--color-muted);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .contact-form,
+    .contact-details {
+      grid-column: span 1;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .contact-form {
+      padding: var(--space-32) var(--space-24);
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .contact-hero__actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .contact-hero__actions :global(a),
+    .contact-hero__actions :global(button) {
+      width: 100%;
+    }
+  }
+</style>
