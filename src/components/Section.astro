@@ -1,6 +1,6 @@
 ---
 interface Props {
-  background?: 'white' | 'mist' | 'navy';
+  background?: 'white' | 'mist' | 'navy' | 'ink';
   spacing?: 'default' | 'large' | 'small';
   class?: string;
 }
@@ -47,12 +47,23 @@ const spacingClass = `section--spacing-${spacing}`;
     color: var(--color-white);
   }
   
+  .section--bg-ink {
+    background-color: var(--color-ink);
+    color: var(--color-white);
+  }
+  
   .section--bg-navy :global(h1),
   .section--bg-navy :global(h2),
   .section--bg-navy :global(h3),
   .section--bg-navy :global(h4),
   .section--bg-navy :global(h5),
-  .section--bg-navy :global(h6) {
+  .section--bg-navy :global(h6),
+  .section--bg-ink :global(h1),
+  .section--bg-ink :global(h2),
+  .section--bg-ink :global(h3),
+  .section--bg-ink :global(h4),
+  .section--bg-ink :global(h5),
+  .section--bg-ink :global(h6) {
     color: var(--color-white);
   }
   
