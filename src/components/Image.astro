@@ -1,0 +1,79 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  layered?: boolean;
+  class?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  layered = false,
+  class: className = '' 
+} = Astro.props;
+---
+
+<div class={`image-wrapper ${layered ? 'image-wrapper--layered' : ''} ${className}`.trim()}>
+  {layered && <div class="image-wrapper__layer" aria-hidden="true"></div>}
+  <img 
+    src={src} 
+    alt={alt}
+    width={width}
+    height={height}
+    class="image-wrapper__image"
+  />
+</div>
+
+<style>
+  .image-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-default);
+  }
+  
+  .image-wrapper__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-default);
+  }
+  
+  /* Layered estate file treatment */
+  .image-wrapper--layered {
+    padding: 0;
+  }
+  
+  .image-wrapper--layered .image-wrapper__image {
+    position: relative;
+    z-index: 1;
+    transition: transform var(--transition-base);
+  }
+  
+  .image-wrapper__layer {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-mist);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-default);
+    z-index: 0;
+    transition: all var(--transition-base);
+  }
+  
+  .image-wrapper--layered:hover .image-wrapper__image {
+    transform: translate(-4px, -4px);
+  }
+  
+  .image-wrapper--layered:hover .image-wrapper__layer {
+    transform: translate(4px, 4px);
+  }
+</style>

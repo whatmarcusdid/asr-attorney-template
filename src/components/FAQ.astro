@@ -1,0 +1,144 @@
+---
+interface Props {
+  question: string;
+  id?: string;
+}
+
+const { question, id } = Astro.props;
+const buttonId = id ? `faq-${id}` : undefined;
+const contentId = id ? `faq-content-${id}` : undefined;
+---
+
+<div class="faq">
+  <button
+    class="faq__button"
+    aria-expanded="false"
+    aria-controls={contentId}
+    id={buttonId}
+    data-faq-toggle
+  >
+    <span class="faq__question">{question}</span>
+    <svg 
+      class="faq__icon" 
+      width="24" 
+      height="24" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
+  </button>
+  <div 
+    class="faq__content" 
+    id={contentId}
+    aria-labelledby={buttonId}
+    data-faq-content
+    hidden
+  >
+    <div class="faq__answer">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script>
+  function initFAQs() {
+    const faqs = document.querySelectorAll('[data-faq-toggle]');
+    
+    faqs.forEach(button => {
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const content = button.nextElementSibling as HTMLElement;
+        
+        if (!content) return;
+        
+        button.setAttribute('aria-expanded', String(!isExpanded));
+        
+        if (isExpanded) {
+          content.hidden = true;
+        } else {
+          content.hidden = false;
+        }
+      });
+    });
+  }
+  
+  // Initialize on load
+  initFAQs();
+  
+  // Re-initialize on view transitions (if using Astro view transitions)
+  document.addEventListener('astro:page-load', initFAQs);
+</script>
+
+<style>
+  .faq {
+    border-bottom: 1px solid var(--color-line);
+  }
+  
+  .faq__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: var(--space-16);
+    padding: var(--space-24) 0;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: color var(--transition-base);
+  }
+  
+  .faq__button:hover {
+    color: var(--color-button-primary);
+  }
+  
+  .faq__question {
+    flex: 1;
+    font-family: var(--font-heading);
+    font-size: var(--text-h5);
+    line-height: var(--leading-heading);
+    color: var(--color-ink);
+    transition: color var(--transition-base);
+  }
+  
+  .faq__button:hover .faq__question {
+    color: var(--color-button-primary);
+  }
+  
+  .faq__icon {
+    flex-shrink: 0;
+    color: var(--color-secondary-copper);
+    transition: transform var(--transition-base);
+  }
+  
+  .faq__button[aria-expanded="true"] .faq__icon {
+    transform: rotate(180deg);
+  }
+  
+  .faq__content {
+    overflow: hidden;
+  }
+  
+  .faq__answer {
+    padding-bottom: var(--space-24);
+    font-size: var(--text-body-sm);
+    line-height: var(--leading-body);
+    color: var(--color-muted);
+  }
+  
+  .faq__answer :global(p:last-child) {
+    margin-bottom: 0;
+  }
+  
+  @media (max-width: 767px) {
+    .faq__question {
+      font-size: var(--text-h6);
+    }
+  }
+</style>

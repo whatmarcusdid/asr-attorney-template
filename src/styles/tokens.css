@@ -1,0 +1,98 @@
+/**
+ * ASR Design Tokens
+ * Authoritative design system for Attorney Site Rescue estate planning law firm templates
+ */
+
+:root {
+  /* Colors */
+  --color-ink: #131313;
+  --color-white: #FFFFFF;
+  --color-mist: #F2F3F4;
+  --color-accent-navy: #1B2A41;
+  --color-button-primary: #2B53B4;
+  --color-secondary-copper: #A66222;
+  --color-tertiary-brown: #4E2A19;
+  --color-muted: #6B6F76;
+  --color-line: #DFE1E4;
+  
+  /* Chip states */
+  --color-chip-active-bg: #1B2A41;
+  --color-chip-active-text: #FFFFFF;
+  
+  /* Border radius */
+  --radius-default: 4px;
+  
+  /* Spacing scale (8pt grid) */
+  --space-0: 0;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-120: 120px;
+  
+  /* Typography - Font families */
+  --font-heading: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Typography - Line heights */
+  --leading-heading: 108%;
+  --leading-body: 150%;
+  
+  /* Typography - Font sizes - Desktop (1440px) */
+  --text-h1: 64px;
+  --text-h2: 52px;
+  --text-h3: 40px;
+  --text-h4: 32px;
+  --text-h5: 26px;
+  --text-h6: 20px;
+  --text-body-lg: 18px;
+  --text-body: 16px;
+  --text-body-sm: 14px;
+  --text-caption: 12px;
+  
+  /* Typography - Letter spacing */
+  --tracking-tight-2: -0.02em;
+  --tracking-tight-1: -0.01em;
+  --tracking-normal: 0;
+  
+  /* Grid */
+  --grid-columns: 12;
+  --grid-gap: 24px;
+  
+  /* Tap target minimum */
+  --tap-target-min: 44px;
+  
+  /* Transitions */
+  --transition-base: 200ms ease-in-out;
+}
+
+/* Tablet breakpoint (768px) */
+@media (max-width: 1024px) {
+  :root {
+    --text-h1: 52px;
+    --text-h2: 40px;
+    --text-h3: 32px;
+    --text-h4: 26px;
+    --text-h5: 22px;
+    --text-h6: 20px;
+    --grid-columns: 8;
+  }
+}
+
+/* Mobile breakpoint (390px) */
+@media (max-width: 767px) {
+  :root {
+    --text-h1: 40px;
+    --text-h2: 32px;
+    --text-h3: 28px;
+    --text-h4: 24px;
+    --text-h5: 20px;
+    --text-h6: 18px;
+    --grid-columns: 4;
+    --grid-gap: 16px;
+  }
+}

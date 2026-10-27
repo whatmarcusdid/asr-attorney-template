@@ -1,0 +1,37 @@
+---
+interface Props {
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  accent?: string;
+  class?: string;
+}
+
+const { level = 2, accent, class: className = '' } = Astro.props;
+const Tag = `h${level}` as any;
+---
+
+<Tag class={`heading ${className}`.trim()}>
+  <slot />
+  {accent && <span class="heading__accent">{accent}</span>}
+</Tag>
+
+<style>
+  .heading {
+    font-family: var(--font-heading);
+    line-height: var(--leading-heading);
+    font-weight: 400;
+    color: var(--color-ink);
+  }
+  
+  .heading__accent {
+    color: var(--color-secondary-copper);
+  }
+  
+  /* Alternative accent colors for variety */
+  .heading--accent-brown .heading__accent {
+    color: var(--color-tertiary-brown);
+  }
+  
+  .heading--accent-navy .heading__accent {
+    color: var(--color-accent-navy);
+  }
+</style>

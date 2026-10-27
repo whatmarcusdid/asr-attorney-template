@@ -1,0 +1,116 @@
+/**
+ * Global styles and base resets
+ */
+
+@import './tokens.css';
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-ink);
+  background-color: var(--color-white);
+  min-height: 100vh;
+}
+
+/* Heading defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: var(--leading-heading);
+  font-weight: 400;
+  color: var(--color-ink);
+}
+
+h1 {
+  font-size: var(--text-h1);
+  letter-spacing: var(--tracking-tight-2);
+}
+
+h2 {
+  font-size: var(--text-h2);
+  letter-spacing: var(--tracking-tight-2);
+}
+
+h3 {
+  font-size: var(--text-h3);
+  letter-spacing: var(--tracking-tight-1);
+}
+
+h4 {
+  font-size: var(--text-h4);
+  letter-spacing: var(--tracking-tight-1);
+}
+
+h5 {
+  font-size: var(--text-h5);
+  letter-spacing: var(--tracking-normal);
+}
+
+h6 {
+  font-size: var(--text-h6);
+  letter-spacing: var(--tracking-normal);
+}
+
+p {
+  margin-bottom: var(--space-16);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--color-button-primary);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--color-button-primary);
+  outline-offset: 2px;
+}

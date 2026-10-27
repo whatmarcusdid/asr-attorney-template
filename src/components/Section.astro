@@ -1,0 +1,113 @@
+---
+interface Props {
+  background?: 'white' | 'mist' | 'navy';
+  spacing?: 'default' | 'large' | 'small';
+  class?: string;
+}
+
+const { 
+  background = 'white', 
+  spacing = 'default',
+  class: className = '' 
+} = Astro.props;
+
+const bgClass = `section--bg-${background}`;
+const spacingClass = `section--spacing-${spacing}`;
+---
+
+<section class={`section ${bgClass} ${spacingClass} ${className}`.trim()}>
+  <div class="section__container">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    width: 100%;
+  }
+  
+  .section__container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: var(--space-32);
+    padding-right: var(--space-32);
+  }
+  
+  /* Background colors */
+  .section--bg-white {
+    background-color: var(--color-white);
+  }
+  
+  .section--bg-mist {
+    background-color: var(--color-mist);
+  }
+  
+  .section--bg-navy {
+    background-color: var(--color-accent-navy);
+    color: var(--color-white);
+  }
+  
+  .section--bg-navy :global(h1),
+  .section--bg-navy :global(h2),
+  .section--bg-navy :global(h3),
+  .section--bg-navy :global(h4),
+  .section--bg-navy :global(h5),
+  .section--bg-navy :global(h6) {
+    color: var(--color-white);
+  }
+  
+  /* Spacing variations */
+  .section--spacing-small {
+    padding-top: var(--space-48);
+    padding-bottom: var(--space-48);
+  }
+  
+  .section--spacing-default {
+    padding-top: var(--space-80);
+    padding-bottom: var(--space-80);
+  }
+  
+  .section--spacing-large {
+    padding-top: var(--space-120);
+    padding-bottom: var(--space-120);
+  }
+  
+  @media (max-width: 1024px) {
+    .section--spacing-small {
+      padding-top: var(--space-32);
+      padding-bottom: var(--space-32);
+    }
+    
+    .section--spacing-default {
+      padding-top: var(--space-64);
+      padding-bottom: var(--space-64);
+    }
+    
+    .section--spacing-large {
+      padding-top: var(--space-80);
+      padding-bottom: var(--space-80);
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .section__container {
+      padding-left: var(--space-16);
+      padding-right: var(--space-16);
+    }
+    
+    .section--spacing-small {
+      padding-top: var(--space-24);
+      padding-bottom: var(--space-24);
+    }
+    
+    .section--spacing-default {
+      padding-top: var(--space-48);
+      padding-bottom: var(--space-48);
+    }
+    
+    .section--spacing-large {
+      padding-top: var(--space-64);
+      padding-bottom: var(--space-64);
+    }
+  }
+</style>

@@ -1,0 +1,49 @@
+# Pages CMS Configuration
+# https://pagescms.org
+
+# This is a stub configuration. Update with client-specific collections and fields.
+
+collections:
+  - name: pages
+    label: Pages
+    path: src/pages
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+        required: true
+      
+      - name: description
+        label: Meta Description
+        type: text
+        maxlength: 160
+        
+      - name: heading
+        label: Main Heading
+        type: string
+        
+      - name: subheading
+        label: Sub-heading
+        type: text
+        
+      - name: body
+        label: Body Content
+        type: markdown
+        
+      - name: cta_text
+        label: Call to Action Text
+        type: string
+        
+      - name: cta_link
+        label: Call to Action Link
+        type: string
+
+# Note: Editable fields are LIMITED to:
+# - Images
+# - Headings
+# - Sub-headlines  
+# - Paragraphs
+# - CTA text and links
+#
+# Anything beyond this scope (layouts, components, structure) 
+# requires repository changes by developers.
