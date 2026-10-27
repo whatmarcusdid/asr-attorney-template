@@ -1,0 +1,128 @@
+{
+  "title": "Wills and Trusts",
+  "slug": "wills-and-trusts",
+  "description": "Comprehensive will and trust planning to protect your assets and provide for your loved ones according to your wishes.",
+  "hero": {
+    "heading": "Wills and",
+    "subheading": "Trusts",
+    "cta": {
+      "text": "Schedule a consultation",
+      "link": "/contact"
+    },
+    "image": {
+      "src": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop",
+      "alt": "Estate planning documents and consultation"
+    }
+  },
+  "overview": {
+    "heading": "Practice area",
+    "headingAccent": "Overview",
+    "description": "Wills and trusts are fundamental estate planning documents that ensure your assets are distributed according to your wishes. A will provides clear instructions for asset distribution after your death, while trusts offer additional benefits including probate avoidance, privacy, and more control over how and when assets are distributed to beneficiaries."
+  },
+  "whatWeHelpWith": {
+    "heading": "What we",
+    "headingAccent": "Help with",
+    "description": "Our comprehensive will and trust services cover all aspects of planning:",
+    "items": [
+      "Drafting a will",
+      "Revocable living trusts",
+      "Naming guardians for minor children",
+      "Choosing an executor or trustee",
+      "Updating an existing plan"
+    ]
+  },
+  "keyBenefits": {
+    "heading": "Key",
+    "headingAccent": "Benefits",
+    "description": "Thoughtful planning provides peace of mind and protection for your family:",
+    "benefits": [
+      {
+        "title": "Clarity for your family",
+        "description": "Clear instructions eliminate confusion and potential disputes among family members.",
+        "icon": "users"
+      },
+      {
+        "title": "Your wishes in writing",
+        "description": "Legally binding documents ensure your intentions are honored and properly executed.",
+        "icon": "files"
+      },
+      {
+        "title": "A plan you can update",
+        "description": "Flexible documents that can be revised as your life circumstances change over time.",
+        "icon": "handshake"
+      },
+      {
+        "title": "Plain language documents",
+        "description": "Clear, understandable language that you and your family can easily comprehend.",
+        "icon": "book-open"
+      }
+    ],
+    "cta": {
+      "text": "Schedule a consultation",
+      "link": "/contact"
+    }
+  },
+  "process": {
+    "heading": "How the",
+    "headingAccent": "Process works",
+    "description": "Our streamlined process ensures comprehensive planning with personal attention:",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Consultation",
+        "description": "We discuss your goals, family situation, and assets to understand your needs.",
+        "icon": "users"
+      },
+      {
+        "number": "02",
+        "title": "Plan design",
+        "description": "We create customized documents tailored to your specific circumstances and wishes.",
+        "icon": "files"
+      },
+      {
+        "number": "03",
+        "title": "Review drafts",
+        "description": "You review all documents and we make any necessary revisions together.",
+        "icon": "book-open"
+      },
+      {
+        "number": "04",
+        "title": "Signing",
+        "description": "We guide you through proper execution and ensure all documents are filed correctly.",
+        "icon": "handshake"
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Wills and trusts",
+    "headingAccent": "Questions",
+    "description": "Common questions about wills and trusts:",
+    "items": [
+      {
+        "question": "What's the difference between a will and a trust?",
+        "answer": "A will is a legal document that directs how your assets will be distributed after your death and goes through probate court. A trust is a legal arrangement where a trustee holds and manages assets for beneficiaries, can avoid probate, and may offer tax benefits and more control over distribution timing."
+      },
+      {
+        "question": "Do I need both a will and a trust?",
+        "answer": "Many people benefit from having both. Even with a trust, you typically need a 'pour-over' will to catch any assets not transferred to the trust. The combination provides comprehensive coverage and ensures all assets are properly handled according to your wishes."
+      },
+      {
+        "question": "Can I change my will or trust after I create it?",
+        "answer": "Yes. A will can be updated at any time by creating a new will or adding a codicil. A revocable living trust can be modified or revoked entirely during your lifetime. We recommend reviewing your documents every 3-5 years or after major life changes."
+      },
+      {
+        "question": "What happens to my assets if I don't have a will?",
+        "answer": "If you die without a will (intestate), state law determines how your assets are distributed. This may not match your wishes and can create additional expense and delay for your family. Assets typically go to your closest relatives in a predetermined order set by state statute."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Talk through",
+    "headingAccent": "your options",
+    "description": "Schedule a consultation to discuss your will and trust planning needs and learn how we can help protect your family.",
+    "cta": {
+      "text": "Schedule a consultation",
+      "link": "/contact"
+    }
+  }
+}
