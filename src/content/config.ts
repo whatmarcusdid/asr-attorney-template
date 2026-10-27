@@ -75,6 +75,23 @@ const practiceAreasCollection = defineCollection({
   }),
 });
 
+const resourcesCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    category: z.enum(['Wills', 'Trusts', 'Probate', 'Powers of Attorney', 'Guardianship']),
+    summary: z.string(),
+    image: z.object({
+      src: z.string(),
+      alt: z.string(),
+    }),
+    date: z.string(),
+    link: z.string(),
+    order: z.number().optional(),
+  }),
+});
+
 export const collections = {
   'practice-areas': practiceAreasCollection,
+  'resources': resourcesCollection,
 };
