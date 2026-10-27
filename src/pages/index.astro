@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Nav from '@components/Nav.astro';
+import Footer from '@components/Footer.astro';
+import Section from '@components/Section.astro';
+import Button from '@components/Button.astro';
+---
+
+<BaseLayout 
+  title="Estate Planning Law Firm | Attorney Site Rescue"
+  description="Professional estate planning services with experienced attorneys."
+>
+  <Nav />
+  
+  <main>
+    <Section spacing="large">
+      <h1>ASR Attorney Template</h1>
+      <p>This is the foundation template. Content pages will be built in future PRs.</p>
+      <p><Button href="/styleguide">View Style Guide</Button></p>
+    </Section>
+  </main>
+  
+  <Footer 
+    responsibleAttorney="Attorney Name, Esq."
+    firmName="Law Firm Name"
+  />
+</BaseLayout>

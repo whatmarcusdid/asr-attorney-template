@@ -1,0 +1,163 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'filled' | 'outline';
+  theme?: 'on-light' | 'on-navy';
+  type?: 'button' | 'submit';
+  class?: string;
+}
+
+const { 
+  href, 
+  variant = 'filled', 
+  theme = 'on-light',
+  type = 'button',
+  class: className = ''
+} = Astro.props;
+
+const baseClasses = 'button';
+const variantClass = `button--${variant}`;
+const themeClass = `button--${theme}`;
+const classes = `${baseClasses} ${variantClass} ${themeClass} ${className}`.trim();
+
+const Component = href ? 'a' : 'button';
+const componentProps = href ? { href } : { type };
+---
+
+<Component class={classes} {...componentProps}>
+  <span class="button__content">
+    <slot />
+  </span>
+  <span class="button__layer" aria-hidden="true"></span>
+</Component>
+
+<style>
+  .button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--tap-target-min);
+    padding: var(--space-16) var(--space-32);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: 500;
+    border-radius: var(--radius-default);
+    border: 2px solid transparent;
+    text-decoration: none;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .button__content {
+    position: relative;
+    z-index: 1;
+    transition: transform var(--transition-base);
+  }
+  
+  .button__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-default);
+    opacity: 0;
+    transform: translate(4px, 4px);
+    transition: all var(--transition-base);
+    pointer-events: none;
+  }
+  
+  /* Filled variant on light background */
+  .button--filled.button--on-light {
+    background-color: var(--color-button-primary);
+    color: var(--color-white);
+    border-color: var(--color-button-primary);
+  }
+  
+  .button--filled.button--on-light .button__layer {
+    background-color: var(--color-button-primary);
+  }
+  
+  .button--filled.button--on-light:hover .button__layer {
+    opacity: 0.3;
+  }
+  
+  /* Outline variant on light background */
+  .button--outline.button--on-light {
+    background-color: transparent;
+    color: var(--color-button-primary);
+    border-color: var(--color-button-primary);
+  }
+  
+  .button--outline.button--on-light .button__layer {
+    background-color: var(--color-button-primary);
+  }
+  
+  .button--outline.button--on-light:hover {
+    background-color: var(--color-button-primary);
+    color: var(--color-white);
+  }
+  
+  .button--outline.button--on-light:hover .button__layer {
+    opacity: 0.2;
+  }
+  
+  /* Filled variant on navy background */
+  .button--filled.button--on-navy {
+    background-color: var(--color-white);
+    color: var(--color-button-primary);
+    border-color: var(--color-white);
+  }
+  
+  .button--filled.button--on-navy .button__layer {
+    background-color: var(--color-white);
+  }
+  
+  .button--filled.button--on-navy:hover .button__layer {
+    opacity: 0.3;
+  }
+  
+  /* Outline variant on navy background */
+  .button--outline.button--on-navy {
+    background-color: transparent;
+    color: var(--color-white);
+    border-color: var(--color-white);
+  }
+  
+  .button--outline.button--on-navy .button__layer {
+    background-color: var(--color-white);
+  }
+  
+  .button--outline.button--on-navy:hover {
+    background-color: var(--color-white);
+    color: var(--color-button-primary);
+  }
+  
+  .button--outline.button--on-navy:hover .button__layer {
+    opacity: 0.2;
+  }
+  
+  /* Hover effect: layered estate file treatment */
+  .button:hover .button__content {
+    transform: translate(-2px, -2px);
+  }
+  
+  .button:hover .button__layer {
+    opacity: 1;
+  }
+  
+  .button:active .button__content {
+    transform: translate(0, 0);
+  }
+  
+  .button:focus-visible {
+    outline: 2px solid var(--color-button-primary);
+    outline-offset: 4px;
+  }
+  
+  .button--on-navy:focus-visible {
+    outline-color: var(--color-white);
+  }
+</style>
