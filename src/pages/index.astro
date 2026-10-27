@@ -4,19 +4,199 @@ import Nav from '@components/Nav.astro';
 import Footer from '@components/Footer.astro';
 import Section from '@components/Section.astro';
 import Button from '@components/Button.astro';
+import Card from '@components/Card.astro';
+import FAQ from '@components/FAQ.astro';
+import Image from '@components/Image.astro';
+import Heading from '@components/Heading.astro';
+import Icon from '@components/Icon.astro';
+import RatingBadge from '@components/RatingBadge.astro';
+
+import homeContent from '../content/home.json';
 ---
 
 <BaseLayout 
-  title="Estate Planning Law Firm | Attorney Site Rescue"
-  description="Professional estate planning services with experienced attorneys."
+  title="Estate Planning Attorney | Protect Your Family's Future"
+  description={homeContent.hero.description}
 >
   <Nav />
   
   <main>
+    <!-- Hero Section -->
     <Section spacing="large">
-      <h1>ASR Attorney Template</h1>
-      <p>This is the foundation template. Content pages will be built in future PRs.</p>
-      <p><Button href="/styleguide">View Style Guide</Button></p>
+      <div class="hero">
+        <div class="hero__content">
+          <h1 class="hero__heading">
+            {homeContent.hero.heading}<br />
+            <span class="hero__accent">{homeContent.hero.subheading}</span>
+          </h1>
+          <p class="hero__description">{homeContent.hero.description}</p>
+          <div class="hero__actions">
+            <Button 
+              href={homeContent.hero.cta.link}
+              variant="filled"
+              theme="on-light"
+            >
+              {homeContent.hero.cta.text}
+            </Button>
+            <Button 
+              href={homeContent.hero.secondaryCta.link}
+              variant="outline"
+              theme="on-light"
+            >
+              {homeContent.hero.secondaryCta.text}
+            </Button>
+          </div>
+          <RatingBadge showRating={false} />
+        </div>
+        <div class="hero__image">
+          <Image 
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop"
+            alt="Estate planning documents"
+            width={800}
+            height={600}
+            layered={true}
+          />
+        </div>
+      </div>
+    </Section>
+    
+    <!-- Practice Areas Section -->
+    <Section background="mist" spacing="large">
+      <div class="section-header">
+        <Heading level={2} accent={homeContent.practiceAreas.headingAccent}>
+          {homeContent.practiceAreas.heading}
+        </Heading>
+      </div>
+      <div class="practice-grid">
+        {homeContent.practiceAreas.items.map((item) => (
+          <Card title={item.title} description={item.description}>
+            <Icon slot="icon" name={item.icon} size={48} />
+          </Card>
+        ))}
+      </div>
+    </Section>
+    
+    <!-- About Section -->
+    <Section spacing="large">
+      <div class="about">
+        <div class="about__content">
+          <Heading level={2} accent={homeContent.about.headingAccent}>
+            {homeContent.about.heading}
+          </Heading>
+          <p class="about__description">{homeContent.about.description}</p>
+          <ul class="about__values">
+            {homeContent.about.values.map((value) => (
+              <li class="about__value">
+                <Icon name="check-circle" size={24} />
+                <span>{value}</span>
+              </li>
+            ))}
+          </ul>
+          <Button 
+            href={homeContent.about.cta.link}
+            variant="outline"
+            theme="on-light"
+          >
+            {homeContent.about.cta.text}
+          </Button>
+        </div>
+        <div class="about__image">
+          <Image 
+            src={homeContent.about.image.src}
+            alt={homeContent.about.image.alt}
+            width={800}
+            height={600}
+            layered={true}
+          />
+        </div>
+      </div>
+    </Section>
+    
+    <!-- Process Section -->
+    <Section background="mist" spacing="large">
+      <div class="section-header">
+        <Heading level={2} accent={homeContent.process.headingAccent}>
+          {homeContent.process.heading}
+        </Heading>
+      </div>
+      <div class="process-grid">
+        {homeContent.process.steps.map((step) => (
+          <div class="process-step">
+            <span class="process-step__number">{step.number}</span>
+            <h3 class="process-step__title">{step.title}</h3>
+            <p class="process-step__description">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+    
+    <!-- Why Choose Us Section -->
+    <Section background="navy" spacing="large">
+      <div class="section-header section-header--navy">
+        <Heading level={2} accent={homeContent.whyChooseUs.headingAccent}>
+          {homeContent.whyChooseUs.heading}
+        </Heading>
+      </div>
+      <div class="why-grid">
+        {homeContent.whyChooseUs.reasons.map((reason) => (
+          <div class="why-card">
+            <div class="why-card__icon">
+              <Icon name={reason.icon} size={40} color="var(--color-white)" />
+            </div>
+            <h3 class="why-card__title">{reason.title}</h3>
+            <p class="why-card__description">{reason.description}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+    
+    <!-- Resources Section -->
+    <Section spacing="large">
+      <div class="section-header">
+        <Heading level={2} accent={homeContent.resources.headingAccent}>
+          {homeContent.resources.heading}
+        </Heading>
+      </div>
+      <div class="resources-grid">
+        {homeContent.resources.items.map((item) => (
+          <Card title={item.title} description={item.description}>
+            <Icon slot="icon" name={item.icon} size={48} />
+          </Card>
+        ))}
+      </div>
+    </Section>
+    
+    <!-- FAQ Section -->
+    <Section background="mist" spacing="large">
+      <div class="section-header">
+        <Heading level={2} accent={homeContent.faq.headingAccent}>
+          {homeContent.faq.heading}
+        </Heading>
+      </div>
+      <div class="faq-container">
+        {homeContent.faq.items.map((item, index) => (
+          <FAQ question={item.question} id={`home-${index}`}>
+            <p>{item.answer}</p>
+          </FAQ>
+        ))}
+      </div>
+    </Section>
+    
+    <!-- Final CTA Section -->
+    <Section background="navy" spacing="large">
+      <div class="final-cta">
+        <Heading level={2} accent={homeContent.finalCta.headingAccent} class="final-cta__heading">
+          {homeContent.finalCta.heading}
+        </Heading>
+        <p class="final-cta__description">{homeContent.finalCta.description}</p>
+        <Button 
+          href={homeContent.finalCta.cta.link}
+          variant="filled"
+          theme="on-navy"
+        >
+          {homeContent.finalCta.cta.text}
+        </Button>
+      </div>
     </Section>
   </main>
   
@@ -25,3 +205,253 @@ import Button from '@components/Button.astro';
     firmName="Law Firm Name"
   />
 </BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-48);
+    align-items: center;
+  }
+  
+  .hero__content {
+    grid-column: span 6;
+  }
+  
+  .hero__image {
+    grid-column: span 6;
+  }
+  
+  .hero__heading {
+    font-size: var(--text-h1);
+    line-height: var(--leading-heading);
+    letter-spacing: var(--tracking-tight-2);
+    margin-bottom: var(--space-24);
+  }
+  
+  .hero__accent {
+    color: var(--color-secondary-copper);
+  }
+  
+  .hero__description {
+    font-size: var(--text-body-lg);
+    color: var(--color-muted);
+    margin-bottom: var(--space-32);
+    max-width: 540px;
+  }
+  
+  .hero__actions {
+    display: flex;
+    gap: var(--space-16);
+    flex-wrap: wrap;
+  }
+  
+  /* Section Headers */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-64);
+  }
+  
+  .section-header--navy {
+    color: var(--color-white);
+  }
+  
+  /* Practice Areas Grid */
+  .practice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-24);
+  }
+  
+  /* About Section */
+  .about {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-48);
+    align-items: center;
+  }
+  
+  .about__content {
+    grid-column: span 6;
+  }
+  
+  .about__image {
+    grid-column: span 6;
+  }
+  
+  .about__description {
+    font-size: var(--text-body-lg);
+    color: var(--color-muted);
+    margin: var(--space-24) 0 var(--space-32);
+    line-height: var(--leading-body);
+  }
+  
+  .about__values {
+    list-style: none;
+    margin: 0 0 var(--space-32) 0;
+    padding: 0;
+  }
+  
+  .about__value {
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+    margin-bottom: var(--space-16);
+    font-size: var(--text-body);
+  }
+  
+  .about__value:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Process Grid */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-32);
+  }
+  
+  .process-step {
+    text-align: center;
+  }
+  
+  .process-step__number {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: var(--text-h2);
+    color: var(--color-secondary-copper);
+    font-weight: 400;
+    margin-bottom: var(--space-16);
+  }
+  
+  .process-step__title {
+    font-size: var(--text-h4);
+    margin-bottom: var(--space-12);
+  }
+  
+  .process-step__description {
+    font-size: var(--text-body-sm);
+    color: var(--color-muted);
+    line-height: var(--leading-body);
+  }
+  
+  /* Why Choose Us Grid */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-32);
+  }
+  
+  .why-card {
+    text-align: center;
+  }
+  
+  .why-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--space-24);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-default);
+  }
+  
+  .why-card__title {
+    font-size: var(--text-h5);
+    color: var(--color-white);
+    margin-bottom: var(--space-12);
+  }
+  
+  .why-card__description {
+    font-size: var(--text-body-sm);
+    color: var(--color-mist);
+    line-height: var(--leading-body);
+  }
+  
+  /* Resources Grid */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-24);
+  }
+  
+  /* FAQ Container */
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Final CTA */
+  .final-cta {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .final-cta__heading {
+    color: var(--color-white);
+    margin-bottom: var(--space-24);
+  }
+  
+  .final-cta__description {
+    font-size: var(--text-body-lg);
+    color: var(--color-mist);
+    margin-bottom: var(--space-32);
+    line-height: var(--leading-body);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .hero,
+    .about {
+      grid-template-columns: 1fr;
+    }
+    
+    .hero__content,
+    .hero__image,
+    .about__content,
+    .about__image {
+      grid-column: span 1;
+    }
+    
+    .hero__image {
+      order: -1;
+    }
+    
+    .process-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .hero {
+      gap: var(--space-32);
+    }
+    
+    .hero__actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .hero__actions :global(a),
+    .hero__actions :global(button) {
+      width: 100%;
+    }
+    
+    .practice-grid,
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .why-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-48);
+    }
+  }
+</style>
