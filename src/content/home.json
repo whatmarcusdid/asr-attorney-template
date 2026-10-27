@@ -1,0 +1,172 @@
+{
+  "hero": {
+    "heading": "Thoughtful estate planning",
+    "subheading": "for the people you love",
+    "description": "Preserve your legacy and protect your family's future with comprehensive estate planning tailored to your unique needs.",
+    "cta": {
+      "text": "Start your plan",
+      "link": "/contact"
+    },
+    "secondaryCta": {
+      "text": "Our services",
+      "link": "/practice-areas"
+    }
+  },
+  "practiceAreas": {
+    "heading": "Practice",
+    "headingAccent": "Areas",
+    "items": [
+      {
+        "title": "Wills",
+        "description": "Ensure your assets are distributed according to your wishes with a legally binding will.",
+        "icon": "files"
+      },
+      {
+        "title": "Trust creation and administration",
+        "description": "Protect your assets and provide for your loved ones with customized trust solutions.",
+        "icon": "shield-check"
+      },
+      {
+        "title": "Power of attorney and directives",
+        "description": "Designate trusted individuals to make decisions on your behalf when you cannot.",
+        "icon": "handshake"
+      },
+      {
+        "title": "Probate",
+        "description": "Navigate the probate process with experienced guidance and compassionate support.",
+        "icon": "scales"
+      }
+    ]
+  },
+  "about": {
+    "heading": "About the firm",
+    "headingAccent": "and our approach",
+    "description": "We understand that estate planning is about more than documents—it's about protecting the people and things that matter most to you. Our firm combines decades of experience with a personalized approach, ensuring your unique circumstances and wishes are reflected in every detail of your plan.",
+    "values": [
+      "Personalized attention to your family's needs",
+      "Comprehensive planning for all life stages",
+      "Clear communication in plain language"
+    ],
+    "cta": {
+      "text": "Learn about our firm",
+      "link": "/about"
+    },
+    "image": {
+      "src": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop",
+      "alt": "Estate planning attorney consultation"
+    }
+  },
+  "process": {
+    "heading": "Our planning",
+    "headingAccent": "Process",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Consultation",
+        "description": "We start with a comprehensive conversation about your goals, family, and assets."
+      },
+      {
+        "number": "02",
+        "title": "Plan design",
+        "description": "We create a customized estate plan tailored to your unique circumstances and wishes."
+      },
+      {
+        "number": "03",
+        "title": "Document preparation",
+        "description": "We prepare all necessary legal documents with precision and attention to detail."
+      },
+      {
+        "number": "04",
+        "title": "Signing and review",
+        "description": "We guide you through document execution and ensure everything is properly filed."
+      },
+      {
+        "number": "05",
+        "title": "Ongoing support",
+        "description": "We remain available to update your plan as your life circumstances change."
+      }
+    ]
+  },
+  "whyChooseUs": {
+    "heading": "Why families",
+    "headingAccent": "choose us",
+    "reasons": [
+      {
+        "title": "Peace of mind for you and your family",
+        "description": "Know that your wishes will be honored and your loved ones protected.",
+        "icon": "heart"
+      },
+      {
+        "title": "Experienced guidance every step of the way",
+        "description": "Decades of combined experience in estate planning and trust administration.",
+        "icon": "shield-check"
+      },
+      {
+        "title": "Clear communication in plain language",
+        "description": "We explain complex legal concepts in terms you can understand.",
+        "icon": "users"
+      },
+      {
+        "title": "Comprehensive planning for every situation",
+        "description": "From simple wills to complex trusts, we handle all aspects of estate planning.",
+        "icon": "check-circle"
+      }
+    ]
+  },
+  "resources": {
+    "heading": "Guides and",
+    "headingAccent": "Resources",
+    "items": [
+      {
+        "title": "Complete guide to wills & trusts",
+        "description": "Learn the differences and decide which is right for you",
+        "icon": "book-open"
+      },
+      {
+        "title": "Understanding probate in Virginia",
+        "description": "A step-by-step overview of the probate process",
+        "icon": "article"
+      },
+      {
+        "title": "Estate planning essentials checklist",
+        "description": "Everything you need to prepare for your consultation",
+        "icon": "folder"
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently asked",
+    "headingAccent": "Questions",
+    "items": [
+      {
+        "question": "What is estate planning?",
+        "answer": "Estate planning is the process of arranging for the management and distribution of your assets after your death. It includes creating wills, trusts, powers of attorney, and healthcare directives to ensure your wishes are carried out and your loved ones are provided for."
+      },
+      {
+        "question": "Do I need a trust or just a will?",
+        "answer": "While a will is essential for everyone, a trust can provide additional benefits such as avoiding probate, maintaining privacy, and offering more control over asset distribution. The right choice depends on your specific circumstances, asset portfolio, and family situation. We can help you determine the best approach during a consultation."
+      },
+      {
+        "question": "How often should I update my estate plan?",
+        "answer": "You should review your estate plan every 3-5 years or after major life events such as marriage, divorce, birth of children, significant asset changes, or moving to a different state. Laws also change, so periodic reviews ensure your plan remains effective and compliant."
+      },
+      {
+        "question": "What happens if I die without a will?",
+        "answer": "If you die without a will (intestate), state law determines how your assets are distributed. This may not align with your wishes and can create additional stress and expense for your family. The probate process may also take longer, and certain family members may not receive what you would have wanted them to have."
+      },
+      {
+        "question": "How much does estate planning cost?",
+        "answer": "The cost of estate planning varies based on the complexity of your situation and the documents you need. We offer transparent pricing and will provide a clear estimate during your initial consultation. Consider estate planning an investment in your family's future security and peace of mind."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Start your plan",
+    "headingAccent": "with a consultation",
+    "description": "Schedule a consultation to discuss your estate planning needs and learn how we can help protect your family's future.",
+    "cta": {
+      "text": "Schedule consultation",
+      "link": "/contact"
+    }
+  }
+}
